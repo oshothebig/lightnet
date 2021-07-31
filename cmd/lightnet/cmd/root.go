@@ -13,8 +13,9 @@ func newRootCmd(in io.Reader, out, errOut io.Writer) *cobra.Command {
 		Use:   "lightnet",
 		Short: "an CLI tool for lightnet",
 		Long:  "an CLI tool providing interactive ways to operate lightnet",
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Println("Run lightnet")
+			return nil
 		},
 	}
 	cmd.SetIn(in)
