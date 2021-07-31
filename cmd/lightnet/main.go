@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/oshothebig/lightnet/cmd/lightnet/cmd"
+)
 
 func main() {
-	fmt.Println("Run lightnet")
+	cmd.Execute()
 }
