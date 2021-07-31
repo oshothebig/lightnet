@@ -28,7 +28,12 @@ func newRootCmd(in io.Reader, out, errOut io.Writer) *cobra.Command {
 func Execute(in io.Reader, out, errOut io.Writer) {
 	rootCmd := newRootCmd(in, out, errOut)
 	if err := rootCmd.Execute(); err != nil {
+		exitCode := 1
+		if ecoder, ok := err.(interface{ ExitCode() int }); ok {
+			exitCode = ecoder.ExitCode()
+		}
+
 		fmt.Println(err)
-		os.Exit(1)
+		os.Exit(exitCode)
 	}
 }
